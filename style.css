@@ -161,67 +161,6 @@ body {
   opacity: 1;
 }
 
-/*
-input[type="range"] {
-  -webkit-appearance: none;
-  width: 100px;
-  background: transparent;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  border: none;
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background: #000;
-  transform: translateY(-3px);
-}
-
-input[type="range"]:focus {
-  outline: none;
-}
-
-input[type="range"]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 7px;
-  cursor: pointer;
-  background: #f0f0f0;
-  border-radius: 5px;
-  border: 0.1rem solid rgba(0, 0, 0, 0.2);
-}
-
-input[type="range"]:focus::-webkit-slider-runnable-track {
-  background: #f0f0f0;
-}
-
-.volume-container {
-  position: relative;
-}
-
-.volume-icon i {
-  opacity: 0.7;
-  font-size: 1.3rem;
-  cursor: pointer;
-}
-
-.volume-icon i:hover {
-  opacity: 1;
-}
-
-.volume-slider {
-  position: absolute;
-  transform: rotate(-90deg);
-  top: -55px;
-  left: -40px;
-  display: none;
-}
-
-.volume-slider.active {
-  display: inline-block;
-}
-*/
-
 .btn-bottom {
   width: 100%;
   display: grid;
@@ -243,6 +182,24 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 .btn-bottom .shuffle:hover,
 .btn-bottom .repeat:hover {
   opacity: 1;
+}
+
+.btn-top .heart.active {
+  opacity: 1;
+  animation: baloon 1s;
+  transition: animation 1s ease-in-out;
+}
+
+@keyframes baloon {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  0% {
+    transfomr: translateY(0);
+  }
 }
 
 .btn-bottom {
