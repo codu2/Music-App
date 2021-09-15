@@ -44,6 +44,11 @@ const title = document.querySelector('.song-title');
 const artist = document.querySelector('.artist');
 const playImg = document.querySelector('.play-img img');
 
+let progress = document.querySelector('.progress');
+const endTime = document.querySelector('.duration');
+const current = document.querySelector('.current');
+const progress_div = document.querySelector('.progress-div');
+
 let isPlaying = false;
 
 const playMusic = () => {
@@ -97,5 +102,56 @@ const prevSong = () => {
     playMusic();
 };
 
+//audio-timeupdate(currenttime, duration)
+player.addEventListener('timeupdate', (event) => {
+    //console.log(event);
+    const {currentTime, duration} = event.srcElement;
+    //console.log(currentTime);
+    //console.log(duration);
+
+    let progress_time = (currentTime / duration) * 100;
+    //console.log(progress_time);
+    progress.style.width = `${progress_time}%`;
+
+    let min_duration = Math.floor(duration / 60);
+    let sec_duration = Math.floor(duration % 60);
+    let return_sec_duration = sec_duration < 10 ? `0${sec_duration}` : `${sec_duration}`;
+    //console.log(min_duration);
+    //console.log(sec_duration);
+    if(duration) {
+        endTime.textContent = `${min_duration}:${return_sec_duration}`;
+    }
+
+    let min_current = Math.floor(currentTime / 60);
+    let sec_current = Math.floor(currentTime % 60);
+    //console.log(min_duration);
+    //console.log(sec_duration);
+    let return_sec_current = sec_current < 10 ? `0${sec_current}` : `${sec_current}`;
+    current.textContent = `${min_current}:${return_sec_current}`;
+});
+
+progress_div.addEventListener('click', (event) => {
+    //console.log(event);
+    const {duration} = player;
+    let move_progress = (event.offsetX / event.srcElement.clientWidth) * duration;
+    //console.log(move_progress);
+
+    player.currentTime = move_progress;
+})
+
+player.addEventListener('ended', nextSong);
+
 nextBtn.addEventListener('click', nextSong);
 prevBtn.addEventListener('click', prevSong);
+
+const heart = document.querySelector('.heart');
+
+heart.addEventListener('click', () => {
+    if(heart.classList.contains('active')) {
+        heart.innerHTML = `<i class="ri-heart-line"></i>`;
+        heart.classList.remove('active');
+    } else {
+        heart.innerHTML = `<i class="ri-heart-fill"></i>`;
+        heart.classList.add('active');
+    }
+})
