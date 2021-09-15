@@ -67,18 +67,6 @@ playBtn.addEventListener('click', () => {
     isPlaying ? pauseMusic() : playMusic();
 })
 
-/*
-playBtn.addEventListener('click', () => {
-    if(player.paused) {
-        player.play();
-        playBtn.style.backgroundImage = "url(img/pause.png)";
-    } else {
-        player.pause();
-        playBtn.style.backgroundImage = "url(img/play.png)";
-    }
-});
-*/
-
 const loadSong = (songs) => {
     title.textContent = songs.title;
     artist.textContent = songs.artist;
@@ -118,6 +106,7 @@ player.addEventListener('timeupdate', (event) => {
     let return_sec_duration = sec_duration < 10 ? `0${sec_duration}` : `${sec_duration}`;
     //console.log(min_duration);
     //console.log(sec_duration);
+    
     if(duration) {
         endTime.textContent = `${min_duration}:${return_sec_duration}`;
     }
@@ -127,6 +116,7 @@ player.addEventListener('timeupdate', (event) => {
     //console.log(min_duration);
     //console.log(sec_duration);
     let return_sec_current = sec_current < 10 ? `0${sec_current}` : `${sec_current}`;
+    
     current.textContent = `${min_current}:${return_sec_current}`;
 });
 
@@ -137,7 +127,7 @@ progress_div.addEventListener('click', (event) => {
     //console.log(move_progress);
 
     player.currentTime = move_progress;
-})
+});
 
 player.addEventListener('ended', nextSong);
 
@@ -154,4 +144,4 @@ heart.addEventListener('click', () => {
         heart.innerHTML = `<i class="ri-heart-fill"></i>`;
         heart.classList.add('active');
     }
-})
+});
