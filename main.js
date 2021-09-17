@@ -36,6 +36,16 @@ const songs = [
     },
 ]
 
+const audioFiles = [
+    'img/Hotel.mp3',
+    'img/Sk8er Boi.mp3',
+    'img/My Happy Ending.mp3',
+    'img/What The Hell.mp3',
+    'img/Boy In A Billion.mp3',
+    'img/Complicated.mp3',
+    'img/Anything But Ordinary.mp3',
+]
+
 const playBtn = document.querySelector('.play');
 const nextBtn = document.querySelector('.next');
 const prevBtn = document.querySelector('.prev');
@@ -81,6 +91,7 @@ const nextSong = () => {
     loadSong(songs[songIndex]);
     player.play();
     playMusic();
+    currentSong();
 };
 
 const prevSong = () => {
@@ -88,6 +99,7 @@ const prevSong = () => {
     loadSong(songs[songIndex]);
     player.play();
     playMusic();
+    currentSong();
 };
 
 //audio-timeupdate(currenttime, duration)
@@ -145,3 +157,70 @@ heart.addEventListener('click', () => {
         heart.classList.add('active');
     }
 });
+
+const playlistContainer = document.querySelector('.play-list-container');
+const playlistCloseBtn = document.querySelector('.play-list-close');
+const playlistBtn = document.querySelector('.playlist-btn');
+
+playlistBtn.addEventListener('click', () => {
+    playlistContainer.classList.add('active');
+});
+
+playlistCloseBtn.addEventListener('click', () => {
+    playlistContainer.classList.remove('active');
+});
+
+const loopBtn = document.querySelector('.repeat');
+
+loopBtn.addEventListener('click', () => {
+    const loopPlayer = document.getElementById('player');
+    if(loopBtn.classList.contains('active')) {
+        loopPlayer.loop = false;
+        loopBtn.classList.remove('active');
+        loopBtn.style.opacity = "0.5";
+    } else {
+        loopPlayer.loop = true;
+        loopBtn.classList.add('active');
+        loopBtn.style.opacity = "1";
+    }
+});
+
+const playList = document.querySelector('.play-list');
+
+for(let i = 0; i < songs.length; i++) {
+    loadList(songs[i]);
+
+    function loadList() {
+        playList.innerHTML = '';
+        songs.forEach(song => {
+            playList.innerHTML += `<div class="play-list-content">
+                                <img src="img/${song.album}.jpg" alt="">
+                                <div class="play-list-info">
+                                    <h5 class="list-title">${song.title}</h5>
+                                    <h6 class="list-artist">${song.artist}</h6>
+                                </div>
+                                <div class="play-list-btns">
+                                    <span class="list-heart"><i class="ri-heart-line"></i></span>
+                                    <span class="list-delete"><i class="ri-delete-bin-7-line"></i></span>
+                                </div>
+                            </div>`;
+        });    
+    }
+}
+
+const currentSongContent = document.querySelector('.current-song-content');
+
+function currentSong() {
+    //console.log(songIndex);
+    currentSongContent.innerHTML = '';
+    currentSongContent.innerHTML += `<img src="img/${songs[songIndex].album}.jpg" alt="">
+                                <h4 class="current-song-title">${songs[songIndex].title}</h4>
+                                <div class="current-song-control">
+                                    <span class="prev"><img src="img/prev.png" alt=""></span>
+                                    <span class="play"><img src="img/play.png" alt=""></span>
+                                    <span class="next"><img src="img/next.png" alt=""></span>
+                                </div>`;
+}
+                                
+currentSong();
+
