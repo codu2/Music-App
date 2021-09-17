@@ -256,3 +256,152 @@ body {
 .play-btns span:hover {
   transform: scale(1.1);
 }
+
+.play-list-container {
+  background: #fff;
+  width: 375px;
+  height: 667px;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(120%);
+  transition: transform 0.4s linear;
+}
+
+.play-list-container.active {
+  transform: translateY(0);
+}
+
+.play-list-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  margin-bottom: 0.7rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
+}
+
+.play-list-top span {
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.play-list-top span:hover {
+  opacity: 1;
+}
+
+.play-list {
+  overflow-y: auto;
+  display: grid;
+  grid-template-rows: 1fr;
+  margin-bottom: 82.68px;
+}
+
+.play-list::-webkit-scrollbar {
+  width: 0px;
+}
+
+.play-list img {
+  border-radius: 1rem;
+  width: 70px;
+  height: 70px;
+}
+
+.play-list .play-list-content {
+  display: grid;
+  grid-template-columns: 70px 180px 55px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 0.05rem solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.play-list-content:hover {
+  background: #f0f0f0;
+}
+
+.play-list-content .play-list-info {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.play-list-info .list-title {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.play-list-info .list-artist {
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.play-list-btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.play-list-btns .list-heart {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.play-list-btns .list-delete {
+  margin-left: 0.7rem;
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+.play-list-btns .list-heart:hover,
+.play-list-btns .list-delete:hover {
+  opacity: 1;
+}
+
+.current-song {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.7rem 0;
+}
+
+.current-song img {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.current-song-content {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 77px 150px 106px;
+  padding: 0 21px;
+  margin: 0 auto;
+}
+
+.current-song-title {
+  color: rgba(255, 255, 255, 0.8);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 7px;
+}
+
+.current-song-control {
+  display: flex;
+  filter: invert(1);
+  gap: 0.5rem;
+}
+
+.current-song-control img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
