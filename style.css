@@ -308,6 +308,9 @@ body {
   border-radius: 1rem;
   width: 70px;
   height: 70px;
+  pointer-events: none;
+  /*play-list에서 사용자가 음악을 선택할 때 play-list-content가 선택되도록
+  하기 위해서 img,list-title,list-artist에 pointer-events:none; 부여*/
 }
 
 .play-list .play-list-content {
@@ -332,11 +335,13 @@ body {
 .play-list-info .list-title {
   font-weight: 500;
   font-size: 0.9rem;
+  pointer-events: none;
 }
 
 .play-list-info .list-artist {
   font-weight: 400;
   font-size: 0.75rem;
+  pointer-events: none;
 }
 
 .play-list-btns {
