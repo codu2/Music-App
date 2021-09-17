@@ -224,3 +224,39 @@ function currentSong() {
                                 
 currentSong();
 
+const playContainerHeader = document.querySelector('.play-header');
+
+playList.onclick = ({target}) => {
+    //console.log(target);
+   let index = 0;
+    while(target = target.previousElementSibling) {
+        index++;
+    }
+    //console.log(index);
+
+    currentSongContent.innerHTML = `<img src="img/${songs[index].album}.jpg" alt="">
+                                <h4 class="current-song-title">${songs[index].title}</h4>
+                                <div class="current-song-control">
+                                    <span class="prev"><img src="img/prev.png" alt=""></span>
+                                    <span class="play"><img src="img/play.png" alt=""></span>
+                                    <span class="next"><img src="img/next.png" alt=""></span>
+                                </div>`;
+
+    playContainerHeader.innerHTML = `<div class="play-img"><img src="img/${songs[index].album}.jpg" alt=""></div>
+    <h1 class="song-title">${songs[index].title}</h1>
+    <h2 class="artist">Claire Rosinkranz</h2>
+    <div class="progress-container">
+        <div class="progress-duration">
+            <div class="current">0:00</div>
+            <div class="duration">2:14</div>
+        </div>
+        <div class="progress-div">
+            <div class="progress"></div>
+        </div>
+    </div>`;    
+    
+    player.src = `src/${songs[index].title}.mp3`;
+    player.play();
+    playBtn.style.backgroundImage = "url(img/pause.png)";
+}
+
