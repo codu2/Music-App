@@ -260,3 +260,33 @@ playList.onclick = ({target}) => {
     playBtn.style.backgroundImage = "url(img/pause.png)";
 }
 
+const shuffleBtn = document.querySelector('.shuffle);
+
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;   
+    while(currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    
+    return array;
+}
+
+//shuffle(songs);
+//console.log(array);
+
+shuffleBtn.addEventListener('click', () => {
+    shuffle(songs);
+    loadSong(songs);
+    prevSong(songs);
+    nextSong(songs);
+    
+    if(shuffleBtn.classList.contains('active')) {
+        shuffleBtn.classList.remove('active');
+        shuffleBtn.style.opacity = "0.5";
+    } else {
+        shuffleBtn.classList.add('active');
+        shuffleBtn.style.opacity = "1";
+}
