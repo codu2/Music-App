@@ -65,12 +65,14 @@ const playMusic = () => {
     isPlaying = true;
     player.play();
     playBtn.style.backgroundImage = "url(img/pause.png)";
+    document.querySelector('.current-play').style.backgroundImage = "url(img/pause.png)";
 };
 
 const pauseMusic = () => {
     isPlaying = false;
     player.pause();
     playBtn.style.backgroundImage = "url(img/play.png)";
+    document.querySelector('.current-play').style.backgroundImage = "url(img/play.png)";
 };
 
 playBtn.addEventListener('click', () => {
@@ -228,34 +230,45 @@ const playContainerHeader = document.querySelector('.play-header');
 
 playList.onclick = ({target}) => {
     //console.log(target);
-   let index = 0;
+    
+   let songIndex = 0;
     while(target = target.previousElementSibling) {
-        index++;
+        songIndex++;
     }
-    //console.log(index);
+    
+    //console.log(songIndex);
+    currentSong();
 
-    currentSongContent.innerHTML = `<img src="img/${songs[index].album}.jpg" alt="">
-                                <h4 class="current-song-title">${songs[index].title}</h4>
+    function nextSong() {
+        songIndex = (songIndex + 1) % songs.length;
+        loadSong(songs[songIndex]);
+        player.play();
+        playMusic();
+        currentSong();
+    };
+
+    function prevSong() {
+        songIndex = (songIndex - 1 + songs.length) % songs.length;
+        loadSong(songs[songIndex]);
+        player.play();
+        playMusic();
+        currentSong();
+    };
+
+    player.addEventListener('ended', nextSong);
+    nextBtn.addEventListener('click', nextSong);
+    prevBtn.addEventListener('click', prevSong);
+
+    loadSong(songs[songIndex]);
+    currentSongContent.innerHTML = `<img src="img/${songs[songIndex].album}.jpg" alt="">
+                                <h4 class="current-song-title">${songs[songIndex].title}</h4>
                                 <div class="current-song-control">
                                     <span class="prev"><img src="img/prev.png" alt=""></span>
-                                    <span class="play"><img src="img/play.png" alt=""></span>
+                                    <span class="current-play"></span>
                                     <span class="next"><img src="img/next.png" alt=""></span>
                                 </div>`;
-
-    playContainerHeader.innerHTML = `<div class="play-img"><img src="img/${songs[index].album}.jpg" alt=""></div>
-    <h1 class="song-title">${songs[index].title}</h1>
-    <h2 class="artist">Claire Rosinkranz</h2>
-    <div class="progress-container">
-        <div class="progress-duration">
-            <div class="current">0:00</div>
-            <div class="duration">2:14</div>
-        </div>
-        <div class="progress-div">
-            <div class="progress"></div>
-        </div>
-    </div>`;    
-    
-    player.src = `src/${songs[index].title}.mp3`;
+                                
+    player.src = `src/${songs[songIndex].title}.mp3`;
     player.play();
     playBtn.style.backgroundImage = "url(img/pause.png)";
 }
@@ -279,14 +292,31 @@ function shuffle(array) {
 
 shuffleBtn.addEventListener('click', () => {
     shuffle(songs);
-    loadSong(songs);
-    prevSong(songs);
-    nextSong(songs);
-    
+    console.log(songs);
+        
+    for(let i = 0; i < songs.length; i++) {
+        loadSong(songs[i]);
+        player.play();
+        playBtn.style.backgroundImage = "url(img/pause.png)";
+    }
+
     if(shuffleBtn.classList.contains('active')) {
         shuffleBtn.classList.remove('active');
         shuffleBtn.style.opacity = "0.5";
     } else {
         shuffleBtn.classList.add('active');
         shuffleBtn.style.opacity = "1";
-}
+    }
+})
+
+const mainPage = document.querySelector('.main-page');
+const mainPlayList = document.querySelector('.main-playlist');
+const prevPageBtn = document.querySelector('.prev-page-btn');
+
+mainPlayList.addEventListener('click', () => {
+    mainPage.classList.remove('active');
+});
+
+prevPageBtn.addEventListener('click', () => {
+    mainPage.classList.add('active');
+});
