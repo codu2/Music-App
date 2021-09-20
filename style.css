@@ -404,9 +404,128 @@ body {
   gap: 0.5rem;
 }
 
-.current-song-control img {
+.current-song-control span img {
   width: 30px;
   height: 30px;
   cursor: pointer;
 }
 
+.current-song-control .current-play {
+  background: url("img/play.png") no-repeat;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-position: center center;
+  cursor: pointer;
+}
+
+.main-page {
+  background: #fff;
+  width: 375px;
+  height: 667px;
+  overflow: hidden;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-120%);
+  transition: transform 0.4s linear;
+  overflow-y: scroll;
+}
+
+.main-page.active {
+  transform: translateX(0%);
+}
+
+.main-page::-webkit-scrollbar {
+  width: 0px;
+}
+
+.main-playlist {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.main-info {
+  padding: 1.5rem 0 0 1.5rem;
+}
+
+.main-info h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.main-info h4 {
+  margin-top: 1.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.main-artist {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: 2rem;
+}
+
+.main-artist-content {
+  cursor: pointer;
+}
+
+.main-img {
+  width: 100px;
+  height: 105px;
+}
+
+.main-img img {
+  width: 100px;
+  height: 105px;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
+
+.zazz,
+.kpop,
+.recommend {
+  margin-top: 1.5rem;
+  padding: 0 1.5rem;
+}
+
+.recommend {
+  margin-bottom: 3rem;
+}
+
+.zazz h4,
+.kpop h4,
+.recommend h4 {
+  margin-bottom: 0.7rem;
+}
+
+.zazz-artist,
+.kpop-artist {
+  width: 330px;
+  height: 168px;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.zazz-artist img,
+.kpop-artist img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.recommend-artist {
+  display: flex;
+  gap: 2px;
+}
+
+.recommend-artist img {
+  width: 100px;
+  cursor: pointer;
+}
